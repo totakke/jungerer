@@ -3,6 +3,7 @@
 Clojure network/graph library wrapping [JUNG][jung].
 
 [![Clojars Project](https://img.shields.io/clojars/v/jungerer.svg)](https://clojars.org/jungerer)
+[![Build Status](https://travis-ci.org/totakke/jungerer.svg?branch=master)](https://travis-ci.org/totakke/jungerer)
 
 **Caveat**: This library is now in developing. Not all functions are implemented yet.
 
