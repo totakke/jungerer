@@ -1,7 +1,9 @@
 (ns jungerer.graph
   (:import [edu.uci.ics.jung.graph DirectedSparseGraph
                                    DirectedSparseMultigraph
-                                   Graph]
+                                   Graph
+                                   UndirectedSparseGraph
+                                   UndirectedSparseMultigraph]
            edu.uci.ics.jung.graph.util.Pair))
 
 ;; FIXME
@@ -31,6 +33,26 @@
 (defn directed-sparse-multigraph
   [edges]
   (let [graph (DirectedSparseMultigraph.)]
+    (doseq [[a b :as edge] edges]
+      (doto graph
+        (.addVertex a)
+        (.addVertex b)
+        (.addEdge (edge->j-edge edge) a b)))
+    graph))
+
+(defn undirected-sparse-graph
+  [edges]
+  (let [graph (UndirectedSparseGraph.)]
+    (doseq [[a b :as edge] edges]
+      (doto graph
+        (.addVertex a)
+        (.addVertex b)
+        (.addEdge (edge->j-edge edge) a b)))
+    graph))
+
+(defn undirected-sparse-multigraph
+  [edges]
+  (let [graph (UndirectedSparseMultigraph.)]
     (doseq [[a b :as edge] edges]
       (doto graph
         (.addVertex a)
