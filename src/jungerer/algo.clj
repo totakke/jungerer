@@ -1,5 +1,5 @@
 (ns jungerer.algo
-  (:import edu.uci.ics.jung.graph.Graph
+  (:import [edu.uci.ics.jung.graph Graph Hypergraph]
            [edu.uci.ics.jung.algorithms.scoring
             BarycenterScorer BetweennessCentrality ClosenessCentrality
             DegreeScorer EigenvectorCentrality HITS PageRank VertexScorer]
@@ -45,7 +45,7 @@
 (defn closeness-centrality
   ([graph]
    (ClosenessCentrality. graph))
-  ([^Graph graph ^Distance distance]
+  ([^Hypergraph graph ^Distance distance]
    (ClosenessCentrality. graph distance)))
 
 (defn eigenvector-centrality
