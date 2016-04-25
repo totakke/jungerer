@@ -1,8 +1,8 @@
 (ns jungerer.algo
   (:import edu.uci.ics.jung.graph.Graph
            [edu.uci.ics.jung.algorithms.scoring
-            BetweennessCentrality ClosenessCentrality DegreeScorer
-            EigenvectorCentrality HITS PageRank VertexScorer]
+            BarycenterScorer BetweennessCentrality ClosenessCentrality
+            DegreeScorer EigenvectorCentrality HITS PageRank VertexScorer]
            [edu.uci.ics.jung.algorithms.shortestpath DijkstraDistance
                                                      DijkstraShortestPath
                                                      Distance
@@ -29,6 +29,10 @@
 
 ;; Scorer
 ;; ------
+
+(defn barycenter-scorer
+  [graph]
+  (BarycenterScorer. graph))
 
 (defn degree-scorer
   [graph]

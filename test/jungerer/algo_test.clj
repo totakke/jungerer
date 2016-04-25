@@ -4,8 +4,13 @@
             [jungerer.graph :as g]
             [jungerer.test-common :refer :all])
   (:import [edu.uci.ics.jung.algorithms.scoring
-            BetweennessCentrality ClosenessCentrality DegreeScorer
-            EigenvectorCentrality HITS HITS$Scores PageRank]))
+            BarycenterScorer BetweennessCentrality ClosenessCentrality
+            DegreeScorer EigenvectorCentrality HITS HITS$Scores PageRank]))
+
+(deftest barycenter-scorer-test
+  (let [graph (g/directed-sparse-graph test-edges)]
+    (testing "returns BarycenterScorer instance"
+      (is (instance? BarycenterScorer (barycenter-scorer graph))))))
 
 (deftest degree-scorer-test
   (let [graph (g/directed-sparse-graph test-edges)]
@@ -40,6 +45,8 @@
 (deftest score-test
   (let [graph (g/directed-sparse-graph test-edges)]
     (testing ""
+      (let [scorer (barycenter-scorer graph)]
+        (is (number? (score scorer 2))))
       (let [scorer (degree-scorer graph)]
         (is (number? (score scorer 2))))
       (let [scorer (betweenness-centrality graph)]
