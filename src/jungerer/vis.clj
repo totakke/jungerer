@@ -56,6 +56,7 @@
            frame (JFrame. title)]
        (when frame-size
          (.setPreferredSize vv (Dimension. (first frame-size) (second frame-size))))
+       (.setDefaultCloseOperation frame JFrame/DISPOSE_ON_CLOSE)
        (.. frame getContentPane (add vv))
        (.pack frame)
        (.setVisible frame true)))))
