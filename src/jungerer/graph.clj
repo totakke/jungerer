@@ -2,6 +2,7 @@
   (:import [edu.uci.ics.jung.graph DirectedSparseGraph
                                    DirectedSparseMultigraph
                                    Graph
+                                   Hypergraph
                                    UndirectedSparseGraph
                                    UndirectedSparseMultigraph]
            edu.uci.ics.jung.graph.util.Pair))
@@ -62,6 +63,14 @@
 
 ;; Manipulation
 ;; ------------
+
+(defn add-node!
+  [^Hypergraph graph node]
+  (.addVertex graph node))
+
+(defn remove-node!
+  [^Hypergraph graph node]
+  (.removeVertex graph node))
 
 (defn add-edge!
   [^Graph graph edge]
