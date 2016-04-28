@@ -54,7 +54,7 @@
 
 (defn page-rank
   ([graph]
-   (page-rank graph 1.5))
+   (page-rank graph 0.15))
   ([graph alpha]
    (doto (PageRank. graph alpha)
      (.evaluate))))
