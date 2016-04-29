@@ -9,19 +9,23 @@
 
 (deftest directed-graph-test
   (testing "returns DirectedSparseGraph instance"
+    (is (instance? DirectedSparseGraph (directed-graph)))
     (is (instance? DirectedSparseGraph (directed-graph test-edges)))))
 
 (deftest directed-multigraph-test
   (testing "returns DirectedSparseMultigraph instance"
+    (is (instance? DirectedSparseMultigraph (directed-multigraph)))
     (is (instance? DirectedSparseMultigraph
                    (directed-multigraph test-edges)))))
 
 (deftest undirected-graph-test
   (testing "returns UndirectedSparseGraph instance"
+    (is (instance? UndirectedSparseGraph (undirected-graph)))
     (is (instance? UndirectedSparseGraph
                    (undirected-graph test-edges)))))
 
 (deftest undirected-multigraph-test
   (testing "returns UndirectedSparseMultigraph instance"
+    (is (instance? UndirectedSparseMultigraph (undirected-multigraph)))
     (is (instance? UndirectedSparseMultigraph
                    (undirected-multigraph test-edges)))))
