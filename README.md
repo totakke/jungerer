@@ -22,7 +22,7 @@ jungerer.graph:
 ```clojure
 (require '[jungerer.graph :as g])
 
-(def graph (g/directed-sparse-graph [[1 2] [2 3] [4 2]])
+(def graph (g/directed-graph [[1 2] [2 3] [4 2]])
 
 (g/add-edge! graph [4 5])
 

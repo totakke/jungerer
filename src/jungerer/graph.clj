@@ -21,7 +21,7 @@
 ;; Constructor
 ;; -----------
 
-(defn directed-sparse-graph
+(defn directed-graph
   [edges]
   (let [graph (DirectedSparseGraph.)]
     (doseq [[a b :as edge] edges]
@@ -31,7 +31,7 @@
         (.addEdge (edge->j-edge edge) a b)))
     graph))
 
-(defn directed-sparse-multigraph
+(defn directed-multigraph
   [edges]
   (let [graph (DirectedSparseMultigraph.)]
     (doseq [[a b :as edge] edges]
@@ -41,7 +41,7 @@
         (.addEdge (edge->j-edge edge) a b)))
     graph))
 
-(defn undirected-sparse-graph
+(defn undirected-graph
   [edges]
   (let [graph (UndirectedSparseGraph.)]
     (doseq [[a b :as edge] edges]
@@ -51,7 +51,7 @@
         (.addEdge (edge->j-edge edge) a b)))
     graph))
 
-(defn undirected-sparse-multigraph
+(defn undirected-multigraph
   [edges]
   (let [graph (UndirectedSparseMultigraph.)]
     (doseq [[a b :as edge] edges]

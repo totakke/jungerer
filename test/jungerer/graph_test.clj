@@ -7,21 +7,21 @@
                                    UndirectedSparseGraph
                                    UndirectedSparseMultigraph]))
 
-(deftest directed-sparse-graph-test
+(deftest directed-graph-test
   (testing "returns DirectedSparseGraph instance"
-    (is (instance? DirectedSparseGraph (directed-sparse-graph test-edges)))))
+    (is (instance? DirectedSparseGraph (directed-graph test-edges)))))
 
-(deftest directed-sparse-multigraph-test
+(deftest directed-multigraph-test
   (testing "returns DirectedSparseMultigraph instance"
     (is (instance? DirectedSparseMultigraph
-                   (directed-sparse-multigraph test-edges)))))
+                   (directed-multigraph test-edges)))))
 
-(deftest undirected-sparse-graph-test
+(deftest undirected-graph-test
   (testing "returns UndirectedSparseGraph instance"
     (is (instance? UndirectedSparseGraph
-                   (undirected-sparse-graph test-edges)))))
+                   (undirected-graph test-edges)))))
 
-(deftest undirected-sparse-multigraph-test
+(deftest undirected-multigraph-test
   (testing "returns UndirectedSparseMultigraph instance"
     (is (instance? UndirectedSparseMultigraph
-                   (undirected-sparse-multigraph test-edges)))))
+                   (undirected-multigraph test-edges)))))
