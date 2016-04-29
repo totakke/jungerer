@@ -92,3 +92,15 @@
 (defn in-edges
   [^Graph graph node]
   (map (partial j-edge->edge graph) (.getInEdges graph node)))
+
+(defn degree
+  [^Hypergraph graph node]
+  (.degree graph node))
+
+(defn in-degree
+  [^Hypergraph graph node]
+  (.inDegree graph node))
+
+(defn out-degree
+  [^Hypergraph graph node]
+  (.outDegree graph node))
