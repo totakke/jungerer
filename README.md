@@ -4,7 +4,7 @@ Clojure network/graph library wrapping [JUNG][jung].
 
 [![Clojars Project](https://img.shields.io/clojars/v/jungerer.svg)](https://clojars.org/jungerer)
 [![Build Status](https://travis-ci.org/totakke/jungerer.svg?branch=master)](https://travis-ci.org/totakke/jungerer)
-[![Dependency Status](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9)
+[![Dependency Status](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9/badge.svg)](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9)
 
 **Caveat**: This library is now in developing. Not all functions are implemented yet.
 
@@ -12,9 +12,9 @@ Clojure network/graph library wrapping [JUNG][jung].
 
 ### Namespaces
 
-* jungerer.graph
-* jungerer.algo
-* jungerer.vis
+* [jungerer.graph][jungerer.graph] - creates and manipulates graph
+* [jungerer.algo][jungerer.algo] - calculates scores such as PageRank
+* [jungerer.vis][jungerer.vis] - visualizes graph on Swing
 
 ### Basics
 
@@ -23,7 +23,7 @@ jungerer.graph:
 ```clojure
 (require '[jungerer.graph :as g])
 
-(def graph (g/directed-graph [[1 2] [2 3] [4 2]])
+(def graph (g/directed-graph [[1 2] [2 3] [4 2]]))
 
 (g/add-edge! graph [4 5])
 
@@ -39,10 +39,10 @@ jungerer.algo:
 ```clojure
 (require '[jungerer.algo :as a])
 
-(def pr (a/page-rank graph))
+(def scorer (a/page-rank graph))
 
-(a/score pr 2)
-=> 0.06451612903225803
+(a/score scorer 2)
+=> 0.26350079629361517
 ```
 
 jungerer.vis:
@@ -62,3 +62,6 @@ Copyright © 2016 Toshiki Takeuchi
 Distributed under the BSD 3-Clause License.
 
 [jung]: http://jrtom.github.io/jung/
+[jungerer.graph]: https://github.com/totakke/jungerer/blob/master/src/jungerer/graph.clj
+[jungerer.algo]: https://github.com/totakke/jungerer/blob/master/src/jungerer/algo.clj
+[jungerer.vis]: https://github.com/totakke/jungerer/blob/master/src/jungerer/vis.clj
