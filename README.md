@@ -15,6 +15,7 @@ Clojure network/graph library wrapping [JUNG][jung].
 * [jungerer.graph][jungerer.graph] - creates and manipulates graph
 * [jungerer.algo][jungerer.algo] - calculates scores such as PageRank
 * [jungerer.vis][jungerer.vis] - visualizes graph on Swing
+* [jungerer.io][jungerer.io] - load/saves external graph formats
 
 ### Basics
 
@@ -55,6 +56,20 @@ jungerer.vis:
 (v/view (v/kk-layout graph) {:title "My Graph", :frame-size [640 480]})
 ```
 
+jungerer.io:
+
+```clojure
+(require '[jungerer.io :as i])
+
+(def graph (g/directed-graph))
+
+(i/load-pairs! "dev-resources/sample.pairs" graph)
+
+(g/add-edge! graph ["AAA" "LLL"])
+
+(i/save-as-pairs "/tmp/sample-edited.pairs" graph)
+```
+
 ## License
 
 Copyright © 2016 Toshiki Takeuchi
@@ -65,3 +80,4 @@ Distributed under the BSD 3-Clause License.
 [jungerer.graph]: https://github.com/totakke/jungerer/blob/master/src/jungerer/graph.clj
 [jungerer.algo]: https://github.com/totakke/jungerer/blob/master/src/jungerer/algo.clj
 [jungerer.vis]: https://github.com/totakke/jungerer/blob/master/src/jungerer/vis.clj
+[jungerer.io]: https://github.com/totakke/jungerer/blob/master/src/jungerer/io.clj
