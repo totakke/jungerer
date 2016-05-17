@@ -17,6 +17,10 @@ Clojure network/graph library wrapping [JUNG][jung].
 * [jungerer.vis][jungerer.vis] - visualizes graph on Swing
 * [jungerer.io][jungerer.io] - load/saves external graph formats
 
+### Documentation
+
+[API Reference](https://totakke.github.io/jungerer/)
+
 ### Basics
 
 jungerer.graph:
