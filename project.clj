@@ -9,4 +9,5 @@
                  [net.sf.jung/jung-graph-impl "2.1"]
                  [net.sf.jung/jung-visualization "2.1"]]
   :profiles {:dev {:global-vars {*warn-on-reflection* true}}
-             :1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]}})
+             :1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]}}
+  :codox {:source-uri "https://github.com/totakke/jungerer/blob/{version}/{filepath}#L{line}"})
