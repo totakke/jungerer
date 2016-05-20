@@ -1,4 +1,4 @@
-(defproject jungerer "0.1.1"
+(defproject jungerer "0.1.2-SNAPSHOT"
   :description "Clojure network/graph library wrapping JUNG"
   :url "https://github.com/totakke/jungerer"
   :license {:name "The BSD 3-Clause License"
