@@ -8,6 +8,8 @@
                  [net.sf.jung/jung-api "2.1"]
                  [net.sf.jung/jung-graph-impl "2.1"]
                  [net.sf.jung/jung-visualization "2.1"]]
-  :profiles {:dev {:global-vars {*warn-on-reflection* true}}
-             :1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]}}
+  :profiles {:dev {:global-vars {*warn-on-reflection* true}
+                   :resource-paths ["dev-resources"]}
+             :1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]
+                   :resource-paths ["dev-resources"]}}
   :codox {:source-uri "https://github.com/totakke/jungerer/blob/{version}/{filepath}#L{line}"})
