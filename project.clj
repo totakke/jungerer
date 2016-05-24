@@ -7,6 +7,7 @@
                  [net.sf.jung/jung-algorithms "2.1"]
                  [net.sf.jung/jung-api "2.1"]
                  [net.sf.jung/jung-graph-impl "2.1"]
+                 [net.sf.jung/jung-io "2.1"]
                  [net.sf.jung/jung-visualization "2.1"]]
   :profiles {:dev {:global-vars {*warn-on-reflection* true}
                    :resource-paths ["dev-resources"]}
