@@ -2,7 +2,9 @@
   (:require [clojure.java.io :as io]
             [clojure.string :as string]
             [jungerer.graph :as g])
-  (:import edu.uci.ics.jung.io.GraphMLWriter))
+  (:import com.google.common.base.Function
+           edu.uci.ics.jung.graph.Hypergraph
+           [edu.uci.ics.jung.io GraphMLReader GraphMLWriter]))
 
 (defn load-pairs!
   [f graph]
@@ -18,6 +20,15 @@
     (doseq [[a b] (g/edges graph)]
       (.write w (str a \tab b \newline)))))
 
+(defn load-graphml!
+  [^String f ^Hypergraph graph]
+  (.load (GraphMLReader.) f graph))
+
 (defn save-as-graphml
   [f graph]
-  (.save (GraphMLWriter.) graph (io/writer f)))
+  (doto (GraphMLWriter.)
+    (.setEdgeIDs (reify Function
+                   (apply [_ edge]
+                     edge)))
+    (.save graph (io/writer f)))
+  nil)
