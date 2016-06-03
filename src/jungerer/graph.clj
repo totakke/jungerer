@@ -76,6 +76,10 @@
   [^Hypergraph graph node]
   (.removeVertex graph node))
 
+(defn contains-node?
+  [^Hypergraph graph node]
+  (.containsVertex graph node))
+
 (defn add-edge!
   [^Graph graph edge]
   (let [[a b] edge]
@@ -84,6 +88,10 @@
 (defn remove-edge!
   [^Graph graph edge]
   (.removeEdge graph (edge->j-edge edge)))
+
+(defn contains-edge?
+  [^Hypergraph graph edge]
+  (.containsEdge graph (edge->j-edge edge)))
 
 (defn nodes
   [^Graph graph]
