@@ -1,4 +1,4 @@
-# jungerer
+# Jungerer
 
 Clojure network/graph library wrapping [JUNG][jung].
 
@@ -7,6 +7,16 @@ Clojure network/graph library wrapping [JUNG][jung].
 [![Dependency Status](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9/badge.svg)](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9)
 
 **Caveat**: This library is now in developing. Not all functions are implemented yet.
+
+## Installation
+
+Jungerer is available as a Maven artifact from [Clojars](https://clojars.org/jungerer).
+
+With Leiningen/Boot:
+
+```clojure
+[jungerer "0.1.2"]
+```
 
 ## Usage
 
