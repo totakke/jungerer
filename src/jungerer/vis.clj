@@ -1,4 +1,5 @@
 (ns jungerer.vis
+  "Functions to visualize a graph on Swing."
   (:import java.awt.Dimension
            javax.swing.JFrame
            [edu.uci.ics.jung.algorithms.layout CircleLayout FRLayout ISOMLayout
@@ -10,22 +11,33 @@
 ;; ------
 
 (defn ^CircleLayout circle-layout
+  "Returns an edu.uci.ics.jung.algorithms.layout.CircleLayout for graph. This
+  layout positions nodes equally spaced on a regular circle."
   [graph]
   (CircleLayout. graph))
 
 (defn ^FRLayout fr-layout
+  "Returns an edu.uci.ics.jung.algorithms.layout.FRLayout for graph. This layout
+  implements the Fruchterman-Reingold force-directed algorithm for node layout."
   [graph]
   (FRLayout. graph))
 
 (defn ^ISOMLayout isom-layout
+  "Returns an edu.uci.ics.jung.algorithms.layout.ISOMLayout for graph. This
+  layout implements a self-organizing map layout algorithm, based on Meyer's
+  self-organizing graph methods."
   [graph]
   (ISOMLayout. graph))
 
 (defn ^KKLayout kk-layout
+  "Returns an edu.uci.ics.jung.algorithms.layout.KKLayout for graph. This layout
+  implements the Kamada-Kawai algorithm for node layout. Does not respect filter
+  calls, and sometimes crashes when the view changes to it."
   [graph]
   (KKLayout. graph))
 
 (defn ^SpringLayout spring-layout
+  "Returns an edu.uci.ics.jung.algorithms.layout.SpringLayout for graph."
   [graph]
   (SpringLayout. graph))
 
@@ -33,7 +45,11 @@
 ;; -------------
 
 (defprotocol Visualizable
-  (view [this] [this option]))
+  (view [this] [this option]
+    "Visualizes graph on Swing. The first argument must be
+  edu.uci.ics.jung.graph.Graph or edu.uci.ics.jung.algorithms.layout.Layout. The
+  optional second argument is an option map including :title, :frame-size, and
+  :layout-size."))
 
 (extend-type Graph
   Visualizable
