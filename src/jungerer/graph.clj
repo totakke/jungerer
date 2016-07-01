@@ -149,3 +149,10 @@
   incoming edge of v and an outgoing edge of node."
   [^Hypergraph graph node]
   (set (.getSuccessors graph node)))
+
+(defn predecessors
+  "Returns the predecessors of node in graph as set. A predecessor of node is
+  defined as a node v which is connected to node by an edge e, where e is an
+  outgoing edge of v and an incoming edge of node."
+  [^Hypergraph graph node]
+  (set (.getPredecessors graph node)))
