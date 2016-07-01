@@ -142,3 +142,10 @@
   "Returns the number of outgoing edges incident to node."
   [^Hypergraph graph node]
   (.outDegree graph node))
+
+(defn successors
+  "Returns the successors of node in graph as set. A successor of node is
+  defined as a node v which is connected to node by an edge e, where e is an
+  incoming edge of v and an outgoing edge of node."
+  [^Hypergraph graph node]
+  (set (.getSuccessors graph node)))
