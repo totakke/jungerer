@@ -1,7 +1,18 @@
 language: clojure
-lein: lein2
-jdk:
-  - oraclejdk7
-  - oraclejdk8
-  - openjdk7
-script: lein2 with-profile dev:1.7 test
+script:
+  - jdk_switcher use oraclejdk7
+  - lein with-profile dev:1.7 test
+  - jdk_switcher use oraclejdk8
+  - lein with-profile dev:1.7 test
+  - jdk_switcher use openjdk7
+  - lein with-profile dev:1.7 test
+env:
+  global:
+    - CLOJARS_USERNAME=totakke
+    - secure: "DKCJn75SnDN+rL2Y58FzqUmGXbYx1g0sRs+EkKgGOtwpIHHdI5xseVoIhakS3mjU1LxjE080RBZLLDGw1VaDfctpCISl1Iwyuznmn+EjvE82HMoVXCzhTObd+fUjrICnfwjqCVTojen5pA8TyHRw+qwmdFM5xFXAdIQNHAhxdIjzO/Qo4GbpXTf5knYVT31V5w0g2mw8uv0BzVdo3TcGqhJFgKjwsIKSHSA3qfQaXdYj/mZwWdxdHnZRh4FlqIlE3ZUMq4ETENMyE+fU998fnSmxc4YjweQtlWT9g0yfHzQTZcIbksvQGr4vJmzH1TG4pb2FF5ftc/bvQkYRHglYTE8OaL8dymW/o3xEPVe/9/UD/loeYar2CiRm35fSkfatw98FMISff4J3msXWUmv/1Rt54uv2xTi52j2b77lnrzUa7D8dgVwZxSUdmVakF6dZAcNCl9H8Md8V2NFLUvdrZ6QtwySMERXX6/5/+LzDt2R9M60eckA7p1JgsrgHpADj4FOOe5xM1zUBodnWSlxIWKUy4Trc4SxJUy0nvhbn+mJBpvZjYAeXqgdBCefvkO+l8qX47uHD01DScZNiTadBFCBVHYnbcJ+zf+zwI9KrQi99IFmd4d8Y4qZtqOK6qC7rqVcwopPHkFAiOQDQAtLxdECjAYi8ngEVJ9WySdrUDj8="
+deploy:
+  provider: script
+  script: ./snapshots-deploy.sh
+  on:
+    branch: master
+

@@ -13,4 +13,7 @@
                    :resource-paths ["dev-resources"]}
              :1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]
                    :resource-paths ["dev-resources"]}}
+  :deploy-repositories [["snapshots" {:url "https://clojars.org/repo/"
+                                      :username [:env/clojars_username :gpg]
+                                      :password [:env/clojars_password :gpg]}]]
   :codox {:source-uri "https://github.com/totakke/jungerer/blob/{version}/{filepath}#L{line}"})
