@@ -1,11 +1,11 @@
 language: clojure
 script:
   - jdk_switcher use oraclejdk7
-  - lein with-profile dev:1.7 test
+  - lein with-profile dev:1.8:1.9 test
   - jdk_switcher use oraclejdk8
-  - lein with-profile dev:1.7 test
+  - lein with-profile dev:1.8:1.9 test
   - jdk_switcher use openjdk7
-  - lein with-profile dev:1.7 test
+  - lein with-profile dev:1.8:1.9 test
 env:
   global:
     - CLOJARS_USERNAME=totakke
