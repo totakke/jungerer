@@ -1,4 +1,5 @@
 (ns jungerer.io
+  "Functions to load/save external graph formats."
   (:require [clojure.java.io :as io]
             [clojure.string :as string]
             [jungerer.graph :as g])

@@ -1,4 +1,5 @@
 (ns jungerer.algo
+  "Functions to find a path and calculate a score of a graph."
   (:import [edu.uci.ics.jung.graph Graph Hypergraph]
            [edu.uci.ics.jung.algorithms.scoring
             BarycenterScorer BetweennessCentrality ClosenessCentrality

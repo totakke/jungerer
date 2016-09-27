@@ -1,4 +1,5 @@
 (ns jungerer.graph
+  "Functions to create and manipulate a graph."
   (:import [edu.uci.ics.jung.graph DirectedSparseGraph
                                    DirectedSparseMultigraph
                                    Graph
