@@ -27,6 +27,21 @@
   [graph]
   (UnweightedShortestPath. graph))
 
+;; Path finding
+;; ------------
+
+(defn dijkstra-path
+  "Returns a vector of the nodes on the shortest path from src-node to dst-node,
+  in order of their occurrence on this path. Returns an empty vector if the path
+  does not exist."
+  [^Hypergraph graph src-node dst-node]
+  (if (= src-node dst-node)
+    [src-node]
+    (let [jedges (.. (DijkstraShortestPath. graph) (getPath src-node dst-node))]
+      (if (seq jedges)
+        (conj (mapv #(.getSource graph %) jedges) dst-node)
+        []))))
+
 ;; Scorer
 ;; ------
 
