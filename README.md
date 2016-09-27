@@ -58,6 +58,9 @@ jungerer.algo:
 
 (a/score scorer 2)
 => 0.26350079629361517
+
+(a/dijkstra-path graph 4 3)
+=> [4 2 3]
 ```
 
 jungerer.vis:
