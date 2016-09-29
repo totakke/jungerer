@@ -1,10 +1,10 @@
 # Jungerer
 
-Clojure network/graph library wrapping [JUNG][jung].
-
 [![Clojars Project](https://img.shields.io/clojars/v/jungerer.svg)](https://clojars.org/jungerer)
 [![Build Status](https://travis-ci.org/totakke/jungerer.svg?branch=master)](https://travis-ci.org/totakke/jungerer)
 [![Dependency Status](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9/badge.svg)](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9)
+
+Clojure network/graph library wrapping [JUNG][jung].
 
 **Caveat**: This library is now in developing. Not all functions are implemented yet.
 
