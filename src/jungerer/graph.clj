@@ -8,16 +8,15 @@
                                    UndirectedSparseMultigraph]
            edu.uci.ics.jung.graph.util.Pair))
 
-;; FIXME
-(defn- edge->j-edge
-  [edge]
-  (let [[a b] edge]
-    (str a b)))
+(deftype InnerEdge [src-node dst-node])
 
-(defn- j-edge->edge
-  [^Graph graph j-edge]
-  (let [pair ^Pair (.getEndpoints graph j-edge)]
-    [(.getFirst pair) (.getSecond pair)]))
+(defn- inner-edge
+  [edge]
+  (apply ->InnerEdge edge))
+
+(defn- ->edge
+  [^InnerEdge inner-edge]
+  [(.src-node inner-edge) (.dst-node inner-edge)])
 
 ;; Constructor
 ;; -----------
@@ -32,7 +31,7 @@
        (doto graph
          (.addVertex a)
          (.addVertex b)
-         (.addEdge (edge->j-edge edge) a b)))
+         (.addEdge (inner-edge edge) a b)))
      graph)))
 
 (defn directed-multigraph
@@ -45,7 +44,7 @@
        (doto graph
          (.addVertex a)
          (.addVertex b)
-         (.addEdge (edge->j-edge edge) a b)))
+         (.addEdge (inner-edge edge) a b)))
      graph)))
 
 (defn undirected-graph
@@ -58,7 +57,7 @@
        (doto graph
          (.addVertex a)
          (.addVertex b)
-         (.addEdge (edge->j-edge edge) a b)))
+         (.addEdge (inner-edge edge) a b)))
      graph)))
 
 (defn undirected-multigraph
@@ -71,7 +70,7 @@
        (doto graph
          (.addVertex a)
          (.addVertex b)
-         (.addEdge (edge->j-edge edge) a b)))
+         (.addEdge (inner-edge edge) a b)))
      graph)))
 
 ;; Manipulation
@@ -101,18 +100,18 @@
   function is not immutable, changing the graph state."
   [^Graph graph edge]
   (let [[a b] edge]
-    (.addEdge graph (edge->j-edge edge) a b)))
+    (.addEdge graph (inner-edge edge) a b)))
 
 (defn remove-edge!
   "Removes edge from graph. Returns true if the removal suceeded. Note that this
   function is not immutable, changing the graph state."
   [^Graph graph edge]
-  (.removeEdge graph (edge->j-edge edge)))
+  (.removeEdge graph (inner-edge edge)))
 
 (defn contains-edge?
   "Returns true if graph's edge collection contains edge."
   [^Hypergraph graph edge]
-  (.containsEdge graph (edge->j-edge edge)))
+  (.containsEdge graph (inner-edge edge)))
 
 (defn nodes
   "Returns all nodes in graph as set."
@@ -122,12 +121,12 @@
 (defn edges
   "Returns all edges in graph."
   [^Graph graph]
-  (map (partial j-edge->edge graph) (.getEdges graph)))
+  (map ->edge (.getEdges graph)))
 
 (defn in-edges
   "Returns incoming edges incident to node in graph."
   [^Graph graph node]
-  (map (partial j-edge->edge graph) (.getInEdges graph node)))
+  (map ->edge (.getInEdges graph node)))
 
 (defn degree
   "Returns the number of edges incident to node."
