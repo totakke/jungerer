@@ -3,7 +3,7 @@
   (:import [edu.uci.ics.jung.graph Graph Hypergraph]
            [edu.uci.ics.jung.algorithms.scoring
             BarycenterScorer BetweennessCentrality ClosenessCentrality
-            DegreeScorer EigenvectorCentrality HITS PageRank VertexScorer]
+            DegreeScorer EigenvectorCentrality HITS HITS$Scores PageRank VertexScorer]
            [edu.uci.ics.jung.algorithms.shortestpath DijkstraDistance
                                                      DijkstraShortestPath
                                                      Distance
@@ -103,8 +103,19 @@
 
 ;;
 
-(defn score
-  "Returns a score of node calculated with scorer algorithm. Note that type of
-  the returned score is different depending on the scorer."
-  [^VertexScorer scorer node]
-  (.getVertexScore scorer node))
+(defprotocol ScoreAvailable
+  (score [this node]
+    "Returns a score of node calculated with scorer algorithm. Note that type of
+  the returned score is different depending on the scorer."))
+
+(extend-type HITS
+  ScoreAvailable
+  (score [this node]
+    (let [^HITS$Scores hits-scores (.getVertexScore this node)]
+      {:hub (.hub hits-scores)
+       :authority (.authority hits-scores)})))
+
+(extend-type VertexScorer
+  ScoreAvailable
+  (score [this node]
+    (.getVertexScore this node)))

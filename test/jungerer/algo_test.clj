@@ -78,4 +78,4 @@
       (let [scorer (page-rank graph)]
         (is (number? (score scorer 2))))
       (let [scorer (hits graph)]
-        (is (instance? HITS$Scores (score scorer 2)))))))
+        (is (map? (score scorer 2)))))))
