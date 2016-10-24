@@ -7,6 +7,26 @@
             BarycenterScorer BetweennessCentrality ClosenessCentrality
             DegreeScorer EigenvectorCentrality HITS HITS$Scores PageRank]))
 
+(deftest bf-path-test
+  (let [graph (g/directed-graph test-edges)]
+    (g/add-node! graph 5)
+    (testing "for directed graph"
+      (is (bf-path graph 1 3) [1 2 3])
+      (is (bf-path graph 4 3) [4 2 3])
+      (is (bf-path graph 4 1) [])
+      (is (bf-path graph 1 1) [1])
+      (is (bf-path graph 1 5) [])
+      (is (thrown? IllegalArgumentException (bf-path graph 1 100)))))
+  (let [graph (g/undirected-graph test-edges)]
+    (g/add-node! graph 5)
+    (testing "for undirected graph"
+      (is (bf-path graph 1 3) [1 2 3])
+      (is (bf-path graph 4 3) [4 2 3])
+      (is (bf-path graph 4 1) [4 2 1])
+      (is (bf-path graph 1 1) [1])
+      (is (bf-path graph 1 5) [])
+      (is (thrown? IllegalArgumentException (bf-path graph 1 100))))))
+
 (deftest dijkstra-path-test
   (let [graph (g/directed-graph test-edges)]
     (g/add-node! graph 5)

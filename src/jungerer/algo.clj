@@ -5,15 +5,38 @@
             BarycenterScorer BetweennessCentrality ClosenessCentrality
             DegreeScorer EigenvectorCentrality HITS HITS$Scores PageRank VertexScorer]
            [edu.uci.ics.jung.algorithms.shortestpath DijkstraShortestPath
-                                                     Distance]))
+                                                     Distance
+                                                     ShortestPathUtils
+                                                     UnweightedShortestPath]))
 
 ;; Path finding
 ;; ------------
 
+(defn bf-path
+  "Returns a vector of the nodes on the shortest path from src-node to dst-node,
+  in order of their occurrence on this path, using Breadth-First Search (BFS)
+  algorithm. Returns an empty vector if the path does not exist."
+  [^Hypergraph graph src-node dst-node]
+  (if-not (.containsVertex graph src-node)
+    (throw (IllegalArgumentException.
+            (str "Specified source node " src-node " is not part of graph " graph))))
+  (if-not (.containsVertex graph dst-node)
+    (throw (IllegalArgumentException.
+            (str "Specified destination node " dst-node " is not part of graph " graph))))
+  (if (= src-node dst-node)
+    [src-node]
+    (let [jedges (ShortestPathUtils/getPath graph
+                                            (UnweightedShortestPath. graph)
+                                            src-node
+                                            dst-node)]
+      (if (seq jedges)
+        (conj (mapv #(.getSource graph %) jedges) dst-node)
+        []))))
+
 (defn dijkstra-path
   "Returns a vector of the nodes on the shortest path from src-node to dst-node,
-  in order of their occurrence on this path. Returns an empty vector if the path
-  does not exist."
+  in order of their occurrence on this path, using Dijkstra's single-source-
+  shortest-path algorithm. Returns an empty vector if the path does not exist."
   [^Hypergraph graph src-node dst-node]
   (if (= src-node dst-node)
     [src-node]
