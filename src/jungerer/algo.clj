@@ -4,29 +4,8 @@
            [edu.uci.ics.jung.algorithms.scoring
             BarycenterScorer BetweennessCentrality ClosenessCentrality
             DegreeScorer EigenvectorCentrality HITS HITS$Scores PageRank VertexScorer]
-           [edu.uci.ics.jung.algorithms.shortestpath DijkstraDistance
-                                                     DijkstraShortestPath
-                                                     Distance
-                                                     UnweightedShortestPath]))
-
-;; Distance
-;; --------
-
-(defn dijkstra-distance
-  ([graph]
-   (DijkstraDistance. graph))
-  ([^Graph graph ^Boolean cached]
-   (DijkstraDistance. graph cached)))
-
-(defn dijkstra-shortest-path
-  ([graph]
-   (DijkstraShortestPath. graph))
-  ([^Graph graph ^Boolean cached]
-   (DijkstraShortestPath. graph cached)))
-
-(defn unweighted-shortest-path
-  [graph]
-  (UnweightedShortestPath. graph))
+           [edu.uci.ics.jung.algorithms.shortestpath DijkstraShortestPath
+                                                     Distance]))
 
 ;; Path finding
 ;; ------------
