@@ -10,11 +10,11 @@
 
 (deftype InnerEdge [src-node dst-node])
 
-(defn- inner-edge
+(defn inner-edge
   [edge]
   (apply ->InnerEdge edge))
 
-(defn- ->edge
+(defn ->edge
   [^InnerEdge inner-edge]
   [(.src-node inner-edge) (.dst-node inner-edge)])
 

@@ -1,11 +1,13 @@
 (ns jungerer.vis
   "Functions to visualize a graph on Swing."
+  (:require [jungerer.graph :as g])
   (:import java.awt.Dimension
            javax.swing.JFrame
            [edu.uci.ics.jung.algorithms.layout CircleLayout FRLayout ISOMLayout
                                                KKLayout Layout SpringLayout]
            edu.uci.ics.jung.graph.Graph
-           edu.uci.ics.jung.visualization.VisualizationViewer))
+           edu.uci.ics.jung.visualization.VisualizationViewer
+           edu.uci.ics.jung.visualization.decorators.ToStringLabeller))
 
 ;; Layout
 ;; ------
@@ -48,8 +50,8 @@
   (view [this] [this option]
     "Visualizes graph on Swing. The first argument must be
   edu.uci.ics.jung.graph.Graph or edu.uci.ics.jung.algorithms.layout.Layout. The
-  optional second argument is an option map including :title, :frame-size, and
-  :layout-size."))
+  optional second argument is an option map including :title, :frame-size,
+  :layout-size, :node-label-fn, and :edge-label-fn."))
 
 (extend-type Graph
   Visualizable
@@ -67,11 +69,19 @@
   (view
     ([this]
      (view this {}))
-    ([this {:keys [^String title frame-size]}]
+    ([this {:keys [^String title frame-size node-label-fn edge-label-fn]
+            :or {node-label-fn str, edge-label-fn str}}]
      (let [vv (VisualizationViewer. this)
            frame (JFrame. title)]
        (when frame-size
          (.setPreferredSize vv (Dimension. (first frame-size) (second frame-size))))
+       (doto (.getRenderContext vv)
+         (.setVertexLabelTransformer (proxy [ToStringLabeller] []
+                                       (apply [node]
+                                         ((comp str node-label-fn) node))))
+         (.setEdgeLabelTransformer (proxy [ToStringLabeller] []
+                                     (apply [inner-edge]
+                                       ((comp str edge-label-fn g/->edge) inner-edge)))))
        (.setDefaultCloseOperation frame JFrame/DISPOSE_ON_CLOSE)
        (.. frame getContentPane (add vv))
        (.pack frame)
