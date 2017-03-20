@@ -68,9 +68,16 @@ jungerer.vis:
 ```clojure
 (require '[jungerer.vis :as v])
 
+;; To visualize simply,
 (v/view graph)
 
-(v/view (v/kk-layout graph) {:title "My Graph", :frame-size [640 480]})
+;; To specify layout and other options,
+(v/view (v/kk-layout graph) {:title "My Graph"
+                             :frame-size [640 480]
+                             :node-label-fn (fn [node]
+                                              (str "node" node))
+                             :edge-label-fn (fn [[node1 node2]]
+                                              (str node1 " -> " node2))})
 ```
 
 jungerer.io:
