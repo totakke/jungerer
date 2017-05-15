@@ -1,15 +1,18 @@
 language: clojure
 lein: 2.7.1
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+  - openjdk7
 script:
-  - jdk_switcher use oraclejdk7
   - lein with-profile +dev:+1.8:+1.9 test
-  - jdk_switcher use oraclejdk8
-  - lein with-profile +dev:+1.8:+1.9 test
-  - jdk_switcher use openjdk7
-  - lein with-profile +dev:+1.8:+1.9 test
-deploy:
-  provider: script
-  script: ./snapshots-deploy.sh
-  on:
-    branch: master
-
+jobs:
+  include:
+    - stage: deploy
+      jdk: oraclejdk8
+      script: skip
+      deploy:
+        provider: script
+        script: ./snapshots-deploy.sh
+        on:
+          branch: master
