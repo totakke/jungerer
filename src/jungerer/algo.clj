@@ -12,6 +12,18 @@
 ;; Path finding
 ;; ------------
 
+(defn- path-edges->nodes
+  [^Graph graph jedges src-node]
+  (if (seq jedges)
+    (loop [jedges jedges, nxt src-node, ret []]
+      (if (seq jedges)
+        (let [p (.getEndpoints graph (first jedges))
+              n1 (.getFirst p)
+              n2 (.getSecond p)]
+          (recur (rest jedges) (if (= nxt n1) n2 n1) (conj ret nxt)))
+        (conj ret nxt)))
+    []))
+
 (defn bf-path
   "Returns a vector of the nodes on the shortest path from src-node to dst-node,
   in order of their occurrence on this path, using Breadth-First Search (BFS)
@@ -29,9 +41,7 @@
                                             (UnweightedShortestPath. graph)
                                             src-node
                                             dst-node)]
-      (if (seq jedges)
-        (conj (mapv #(.getSource graph %) jedges) dst-node)
-        []))))
+      (path-edges->nodes graph jedges src-node))))
 
 (defn dijkstra-path
   "Returns a vector of the nodes on the shortest path from src-node to dst-node,
@@ -41,9 +51,7 @@
   (if (= src-node dst-node)
     [src-node]
     (let [jedges (.. (DijkstraShortestPath. graph) (getPath src-node dst-node))]
-      (if (seq jedges)
-        (conj (mapv #(.getSource graph %) jedges) dst-node)
-        []))))
+      (path-edges->nodes graph jedges src-node))))
 
 ;; Scorer
 ;; ------
