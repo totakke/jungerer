@@ -13,7 +13,7 @@ Jungerer is available as a Maven artifact from [Clojars](https://clojars.org/jun
 With Leiningen/Boot:
 
 ```clojure
-[jungerer "0.4.0"]
+[jungerer "0.4.1"]
 ```
 
 ## Usage
