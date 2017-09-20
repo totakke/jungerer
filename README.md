@@ -29,6 +29,10 @@ With Leiningen/Boot:
 
 [API Reference](https://totakke.github.io/jungerer/)
 
+### Example
+
+See [example project](https://github.com/totakke/jungerer/tree/master/example) to quickly try Jungerer.
+
 ### Basics
 
 jungerer.graph:
@@ -94,7 +98,7 @@ jungerer.io:
 
 ## License
 
-Copyright © 2016-2017 Toshiki Takeuchi
+Copyright © 2016-2017 [Toshiki Takeuchi](https://github.com/totakke)
 
 Distributed under the BSD 3-Clause License.
 
