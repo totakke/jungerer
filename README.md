@@ -2,7 +2,6 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/jungerer.svg)](https://clojars.org/jungerer)
 [![Build Status](https://travis-ci.org/totakke/jungerer.svg?branch=master)](https://travis-ci.org/totakke/jungerer)
-[![Dependency Status](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9/badge.svg)](https://www.versioneye.com/user/projects/5722e192ba37ce00350af2d9)
 
 Clojure network/graph library wrapping [JUNG][jung].
 
@@ -45,10 +44,10 @@ jungerer.graph:
 (g/add-edge! graph [4 5])
 
 (g/nodes graph)
-=> #{1 4 3 2 5}
+;;=> #{1 4 3 2 5}
 
 (g/edges graph)
-=> ([1 2] [2 3] [4 5] [4 2])
+;;=> ([1 2] [2 3] [4 5] [4 2])
 ```
 
 jungerer.algo:
@@ -59,10 +58,10 @@ jungerer.algo:
 (def scorer (a/page-rank graph))
 
 (a/score scorer 2)
-=> 0.26350079629361517
+;;=> 0.26350079629361517
 
 (a/dijkstra-path graph 4 3)
-=> [4 2 3]
+;;=> [4 2 3]
 ```
 
 jungerer.vis:
