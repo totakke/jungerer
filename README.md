@@ -97,7 +97,7 @@ jungerer.io:
 
 ## License
 
-Copyright © 2016-2017 [Toshiki Takeuchi](https://github.com/totakke)
+Copyright © 2016-2019 [Toshiki Takeuchi](https://github.com/totakke)
 
 Distributed under the BSD 3-Clause License.
 
