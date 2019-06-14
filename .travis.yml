@@ -7,7 +7,7 @@ jdk:
   - openjdk11
   - openjdk12
 script:
-  - lein with-profile +dev:+1.8:+1.9 test
+  - lein with-profile +dev:+1.7:+1.9 test
 jobs:
   include:
     - stage: deploy
