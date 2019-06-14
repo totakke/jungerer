@@ -11,6 +11,7 @@
                  [net.sf.jung/jung-io "2.1.1"]
                  [net.sf.jung/jung-visualization "2.1.1"]]
   :profiles {:dev {:global-vars {*warn-on-reflection* true}}
+             :1.10 {:dependencies [[org.clojure/clojure "1.10.1"]]}
              :1.9 {:dependencies [[org.clojure/clojure "1.9.0"]]}
              :1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]}}
   :deploy-repositories [["snapshots" {:url "https://clojars.org/repo/"
