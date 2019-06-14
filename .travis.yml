@@ -1,15 +1,17 @@
 language: clojure
-lein: 2.7.1
+lein: 2.9.1
 jdk:
-  - oraclejdk7
-  - oraclejdk8
-  - openjdk7
+  - openjdk8
+  - openjdk9
+  - openjdk10
+  - openjdk11
+  - openjdk12
 script:
   - lein with-profile +dev:+1.8:+1.9 test
 jobs:
   include:
     - stage: deploy
-      jdk: oraclejdk8
+      jdk: openjdk8
       script: skip
       deploy:
         provider: script
